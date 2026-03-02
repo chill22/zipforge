@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
-from fpdf import FPDF
+from fpdf2 import FPDF
 import json
 import os
 from auth_utils import get_current_user, logout
@@ -47,7 +47,7 @@ with col_map:
     for idx, row in df.iterrows():
         color = 'green' if row['score'] > 70 else 'orange' if row['score'] > 50 else 'red'
         folium.Marker(
-            [row['lat'], row['lon']], 
+            [row['latitude'], row['longitude']], 
             popup=f"ZIP: {row['zip']}<br>Score: {row['score']:.1f}",
             tooltip=row['zip'],
             icon=folium.Icon(color=color, icon='info-sign')
