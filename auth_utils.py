@@ -1,12 +1,12 @@
 import streamlit as st
 
 def login_user(email: str):
-    &quot;&quot;&quot;Dummy login for testing&quot;&quot;&quot;
+    """Dummy login for testing"""
     st.session_state['user'] = {'email': email}
     st.rerun()
 
 def signup_user(email: str):
-    &quot;&quot;&quot;Dummy signup&quot;&quot;&quot;
+    """Dummy signup"""
     login_user(email)
 
 def get_current_user():
