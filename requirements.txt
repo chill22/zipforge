@@ -1,0 +1,9 @@
+streamlit
+supabase
+pandas
+folium
+streamlit-folium
+geopy
+requests
+python-dotenv
+fpdf2

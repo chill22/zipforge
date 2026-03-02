@@ -1,0 +1,22 @@
+[
+  {&quot;zip&quot;: &quot;46201&quot;, &quot;score&quot;: 72.5, &quot;lat&quot;: 39.7667, &quot;lon&quot;: -86.1615, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46202&quot;, &quot;score&quot;: 68.3, &quot;lat&quot;: 39.7755, &quot;lon&quot;: -86.1764, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46203&quot;, &quot;score&quot;: 55.2, &quot;lat&quot;: 39.7403, &quot;lon&quot;: -86.1312, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46204&quot;, &quot;score&quot;: 81.7, &quot;lat&quot;: 39.7635, &quot;lon&quot;: -86.1552, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46205&quot;, &quot;score&quot;: 78.9, &quot;lat&quot;: 39.8242, &quot;lon&quot;: -86.1663, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46214&quot;, &quot;score&quot;: 65.1, &quot;lat&quot;: 39.7897, &quot;lon&quot;: -86.2651, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46220&quot;, &quot;score&quot;: 85.4, &quot;lat&quot;: 39.8623, &quot;lon&quot;: -86.1268, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46222&quot;, &quot;score&quot;: 62.8, &quot;lat&quot;: 39.7661, &quot;lon&quot;: -86.2003, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46224&quot;, &quot;score&quot;: 59.7, &quot;lat&quot;: 39.8078, &quot;lon&quot;: -86.2487, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46225&quot;, &quot;score&quot;: 67.2, &quot;lat&quot;: 39.7464, &quot;lon&quot;: -86.1765, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46226&quot;, &quot;score&quot;: 74.3, &quot;lat&quot;: 39.8333, &quot;lon&quot;: -86.0525, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46227&quot;, &quot;score&quot;: 76.8, &quot;lat&quot;: 39.7075, &quot;lon&quot;: -86.1008, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46228&quot;, &quot;score&quot;: 82.1, &quot;lat&quot;: 39.8678, &quot;lon&quot;: -86.1957, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46229&quot;, &quot;score&quot;: 64.9, &quot;lat&quot;: 39.7924, &quot;lon&quot;: -85.9992, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46234&quot;, &quot;score&quot;: 71.6, &quot;lat&quot;: 39.8194, &quot;lon&quot;: -86.3686, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46236&quot;, &quot;score&quot;: 69.4, &quot;lat&quot;: 39.8722, &quot;lon&quot;: -85.9756, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46237&quot;, &quot;score&quot;: 73.2, &quot;lat&quot;: 39.7079, &quot;lon&quot;: -86.0653, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46239&quot;, &quot;score&quot;: 66.7, &quot;lat&quot;: 39.7472, &quot;lon&quot;: -85.9847, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46240&quot;, &quot;score&quot;: 84.5, &quot;lat&quot;: 39.9175, &quot;lon&quot;: -86.1042, &quot;favorite&quot;: false},
+  {&quot;zip&quot;: &quot;46241&quot;, &quot;score&quot;: 58.9, &quot;lat&quot;: 39.7583, &quot;lon&quot;: -86.2701, &quot;favorite&quot;: false}
+]
