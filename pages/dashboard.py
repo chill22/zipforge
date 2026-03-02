@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
-from fpdf2 import FPDF
 import json
 import os
 from auth_utils import get_current_user, logout
@@ -19,80 +18,53 @@ st.title(f"🏠 ZipForge Dashboard - Welcome, {user['email']}")
 # Load data
 @st.cache_data
 def load_zip_data():
+    dummy_data = [
+        {'zip': '46131', 'score': 8.3, 'favorite': False, 'latitude': 39.48, 'longitude': -86.06, 'population': 25000, 'median_income': 92000},
+        {'zip': '46077', 'score': 9.2, 'favorite': True, 'latitude': 39.95, 'longitude': -86.27, 'population': 13000, 'median_income': 142000},
+        {'zip': '46201', 'score': 6.5, 'favorite': False, 'latitude': 39.78, 'longitude': -86.15, 'population': 30000, 'median_income': 55000},
+    ]
     if os.path.exists('scores.json'):
         try:
             with open('scores.json', 'r') as f:
                 data = json.load(f)
             df = pd.DataFrame(data)
-            if 'favorite' not in df.columns:
-                df['favorite'] = False
-            df['favorite'] = df['favorite'].astype(bool)
-            df['score'] = pd.to_numeric(df['score'], errors='coerce')
-            return df.dropna(subset=['latitude', 'longitude', 'score'])
-        except Exception as e:
-            st.error(f"Error loading scores.json: {e}")
-            return pd.DataFrame()
+        except:
+            df = pd.DataFrame(dummy_data)
     else:
-        st.warning("No scores.json. Using dummy.")
-        dummy = pd.DataFrame([{
-            'zip': '46131',
-            'score': 8.3,
-            'favorite': False,
-            'latitude': 39.48,
-            'longitude': -86.06
-        }])
-        return dummy
+        df = pd.DataFrame(dummy_data)
+    if 'favorite' not in df:
+        df['favorite'] = False
+    df['favorite'] = df['favorite'].astype(bool)
+    df['score'] = pd.to_numeric(df['score'])
+    return df
 
 df = load_zip_data()
 
 if df.empty:
-    st.warning("No data. Run fetch_data.py & score_zips.py.")
     st.stop()
 
 # Map
-col_map, col_metrics = st.columns([2, 1])
-with col_map:
-    st.subheader("📍 Indiana ZIP Scores Map")
+col1, col2 = st.columns([3,1])
+with col1:
+    st.subheader("📍 Map")
     m = folium.Map(location=[39.77, -86.16], zoom_start=8)
     for _, row in df.iterrows():
         color = 'green' if row['score'] > 7 else 'orange' if row['score'] > 5 else 'red'
-        folium.Marker(
-            [row['latitude'], row['longitude']], 
-            popup=f"ZIP: {row['zip']}<br>Score: {row['score']:.1f}",
-            tooltip=row['zip'],
-            icon=folium.Icon(color=color)
-        ).add_to(m)
-    st_folium(m, width=700)
+        folium.Marker([row['latitude'], row['longitude']], popup=row['zip'] + f" Score: {row['score']:.1f}", tooltip=row['zip'], icon=folium.Icon(color=color)).add_to(m)
+    st_folium(m, width=700, height=400)
 
-with col_metrics:
+with col2:
     st.metric("Top Score", f"{df['score'].max():.1f}")
-    st.metric("Avg Score", f"{df['score'].mean():.1f}")
-    st.metric("Favorites", df['favorite'].sum())
+    st.metric("Avg", f"{df['score'].mean():.1f}")
+    st.metric("Faves", int(df['favorite'].sum()))
 
 # Table
-st.subheader("📊 ZIP Scores")
-score_col = st.column_config.NumberColumn("Score", format="%.1f")
-fav_col = st.column_config.CheckboxColumn("Favorite")
+st.subheader("Table")
+edited_df = st.data_editor(df, use_container_width=True, hide_index=False)
 
-edited_df = st.data_editor(
-    df[['zip', 'score', 'favorite', 'latitude', 'longitude']],
-    column_config={"score": score_col, "favorite": fav_col},
-    use_container_width=True
-)
-
-# PDF
-if st.button("📄 PDF Report"):
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", "B", 16)
-    pdf.cell(0, 10, "ZipForge Report", ln=True, align="C")
-    pdf.set_font("Arial", 12)
-    top_df = edited_df.sort_values("score", ascending=False).head(10)
-    for _, row in top_df.iterrows():
-        pdf.cell(0, 8, f"ZIP {row['zip']}: {row['score']:.1f}", ln=True)
-    filename = "report.pdf"
-    pdf.output(filename)
-    with open(filename, "rb") as f:
-        st.download_button("Download", f.read(), filename, "application/pdf")
+# Report
+if st.button("📥 CSV Report"):
+    csv = edited_df.to_csv(index=False).encode('utf-8')
+    st.download_button("Download CSV", csv, "zipforge.csv", "text/csv")
 
 st.sidebar.button("Logout", on_click=logout)
