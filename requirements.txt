@@ -7,3 +7,4 @@ geopy
 requests
 python-dotenv
 fpdf2
+plotly
